@@ -1,1 +1,263 @@
 @import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   STITCH DESIGN SYSTEM — Tailwind v4 Theme Layer
+   "Radical Asymmetry. Raw Precision. Rejection of the Default."
+   ═══════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Color Palette ── */
+  --color-void: #0a0a0a;
+  --color-signal: #ff382e;
+  --color-canvas: #f8f5f5;
+  --color-subtle: #23100f;
+  --color-white-10: rgba(255, 255, 255, 0.1);
+  --color-white-5: rgba(255, 255, 255, 0.05);
+  --color-signal-20: rgba(255, 56, 46, 0.2);
+  --color-signal-40: rgba(255, 56, 46, 0.4);
+
+  /* ── Typography ── */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  /* ── Font Sizes — Typographic Scale ── */
+  --font-size-micro: 0.625rem;     /* 10px */
+  --font-size-caption: 0.75rem;    /* 12px */
+  --font-size-body: 1rem;          /* 16px */
+  --font-size-h3: 1.25rem;         /* 20px */
+  --font-size-h2: 1.75rem;         /* 28px */
+  --font-size-h1: 2.5rem;          /* 40px */
+  --font-size-display: 4.5rem;     /* 72px */
+  --font-size-mega: 8rem;          /* 128px */
+
+  /* ── Spacing (intentional, not predictable) ── */
+  --spacing-gutter: 1.5rem;
+  --spacing-section: 6rem;
+  --spacing-block: 3rem;
+
+  /* ── Borders ── */
+  --radius-sharp: 0.125rem;
+  --radius-sm: 0.25rem;
+
+  /* ── Transitions ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ROOT VARIABLES & BASE LAYER
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #23100f;
+  --accent: #ff382e;
+  --text-primary: #f8f5f5;
+  --text-muted: rgba(248, 245, 245, 0.5);
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+/* ── CSS Reset & Base ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-display);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NOISE OVERLAY — Global texture
+   ═══════════════════════════════════════════════════════════ */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CUSTOM UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Grid Lines — Architectural structure ── */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 56, 46, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 56, 46, 0.05) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+}
+
+.grid-lines-dense {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+}
+
+/* ── Vertical Text — Architectural sidebars ── */
+.text-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* ── Bleed — Elements that break viewport edges ── */
+.bleed-left {
+  margin-left: calc(-1 * var(--spacing-gutter));
+  padding-left: var(--spacing-gutter);
+}
+
+.bleed-right {
+  margin-right: calc(-1 * var(--spacing-gutter));
+  padding-right: var(--spacing-gutter);
+}
+
+.bleed-full {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+}
+
+/* ── Ghost Text — Outline only ── */
+.text-ghost {
+  -webkit-text-stroke: 1px var(--text-primary);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.text-ghost-red {
+  -webkit-text-stroke: 1px var(--accent);
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── System Status — Terminal-style labels ── */
+.system-status {
+  font-family: var(--font-display);
+  font-size: var(--font-size-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.system-status::before {
+  content: "// ";
+  color: var(--accent);
+}
+
+/* ── Section Divider ── */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+}
+
+/* ── Drop Cap ── */
+.drop-cap::first-letter {
+  font-family: var(--font-serif);
+  float: left;
+  font-size: 4.5em;
+  line-height: 0.8;
+  padding-right: 0.1em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE TREATMENTS
+   ═══════════════════════════════════════════════════════════ */
+
+.img-desaturate {
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.6s var(--ease-out-expo);
+}
+
+.img-desaturate:hover {
+  filter: grayscale(0%) contrast(1);
+}
+
+.img-duotone {
+  position: relative;
+}
+
+.img-duotone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+  transition: opacity 0.5s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.img-duotone:hover::after {
+  opacity: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-display: 2.5rem;
+    --font-size-mega: 3.5rem;
+    --font-size-h1: 1.75rem;
+    --spacing-section: 3rem;
+    --spacing-gutter: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --font-size-display: 3.5rem;
+    --font-size-mega: 5rem;
+    --spacing-section: 4rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LINK / INTERACTIVE BASE
+   ═══════════════════════════════════════════════════════════ */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
