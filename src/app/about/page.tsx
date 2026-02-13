@@ -3,11 +3,9 @@
 import { motion } from "framer-motion";
 import { SystemStatus, SectionDivider } from "@/components/ui/SectionDivider";
 
-const fadeUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-80px" },
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+const fadeTransition = {
+    duration: 0.6,
+    ease: [0.16, 1, 0.3, 1] as const,
 };
 
 export default function AboutPage() {
@@ -36,7 +34,12 @@ export default function AboutPage() {
                 <div className="md:col-span-7 space-y-20">
 
                     {/* Mindset */}
-                    <motion.section {...fadeUp}>
+                    <motion.section
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={fadeTransition}
+                    >
                         <SectionDivider label="01 — MINDSET" className="mb-8" />
                         <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6">
                             Design is a position,<br />not a profession.
@@ -53,7 +56,12 @@ export default function AboutPage() {
                     </motion.section>
 
                     {/* Approach */}
-                    <motion.section {...fadeUp}>
+                    <motion.section
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={fadeTransition}
+                    >
                         <SectionDivider label="02 — APPROACH" className="mb-8" />
                         <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6">
                             Precision over polish.
@@ -71,7 +79,12 @@ export default function AboutPage() {
                     </motion.section>
 
                     {/* Values */}
-                    <motion.section {...fadeUp}>
+                    <motion.section
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={fadeTransition}
+                    >
                         <SectionDivider label="03 — VALUES" className="mb-8" />
                         <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6">
                             Conviction over consensus.
@@ -90,7 +103,10 @@ export default function AboutPage() {
 
                     {/* Pull Quote 1 */}
                     <motion.blockquote
-                        {...fadeUp}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={fadeTransition}
                         className="border-l-2 border-[#ff382e] pl-6"
                     >
                         <p className="text-xl md:text-2xl font-serif italic text-white/80 leading-snug">
@@ -99,7 +115,13 @@ export default function AboutPage() {
                     </motion.blockquote>
 
                     {/* Metadata Block */}
-                    <motion.div {...fadeUp} className="space-y-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={fadeTransition}
+                        className="space-y-6"
+                    >
                         <div>
                             <span className="text-[0.625rem] uppercase tracking-[0.15em] text-white/30 block mb-1">
                                 Location
@@ -122,7 +144,10 @@ export default function AboutPage() {
 
                     {/* Pull Quote 2 */}
                     <motion.blockquote
-                        {...fadeUp}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={fadeTransition}
                         className="border-l-2 border-white/20 pl-6"
                     >
                         <p className="text-lg font-serif italic text-white/50 leading-snug">
@@ -144,7 +169,10 @@ export default function AboutPage() {
 
             {/* ── Large closing statement ── */}
             <motion.div
-                {...fadeUp}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={fadeTransition}
                 className="mt-32 max-w-4xl"
             >
                 <div className="h-px bg-white/10 mb-12" />

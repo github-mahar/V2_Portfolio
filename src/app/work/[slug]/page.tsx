@@ -3,12 +3,12 @@
 import { notFound } from "next/navigation";
 import { use } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { PROJECTS } from "@/lib/constants";
 import { SystemStatus, SectionDivider } from "@/components/ui/SectionDivider";
 import { Button } from "@/components/ui/Button";
 
-const fadeUp = {
+const fadeUp: Variants = {
     initial: { opacity: 0, y: 30 },
     animate: (i: number) => ({
         opacity: 1,
